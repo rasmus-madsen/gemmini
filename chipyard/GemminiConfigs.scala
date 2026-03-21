@@ -45,3 +45,11 @@ class GemminiShuttleConfig extends Config(
   new gemmini.DefaultGemminiConfig ++                            // use Gemmini systolic array GEMM accel
   new shuttle.common.WithNShuttleCores ++
   new chipyard.config.AbstractConfig)
+
+class GemminiAXI4RocketConfig extends Config(
+  new testchipip.serdes.WithNoSerialTL ++
+  new chipyard.config.WithAXI4DigitalTop ++
+  new gemmini.DefaultGemminiConfig ++                            // use Gemmini systolic array GEMM accelerator
+  new freechips.rocketchip.rocket.WithNHugeCores(1) ++
+  new chipyard.config.WithSystemBusWidth(128) ++
+  new chipyard.config.AbstractConfig)
